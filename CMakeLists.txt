@@ -12,6 +12,8 @@ list(REMOVE_ITEM SUBDIRS "include")
 list(REMOVE_ITEM SUBDIRS ".vscode")
 list(REMOVE_ITEM SUBDIRS ".vs")
 list(REMOVE_ITEM SUBDIRS "out")
+list(REMOVE_ITEM SUBDIRS ".git")
+list(REMOVE_ITEM SUBDIRS "build")
 # Include all .hpp files in the include/ directory
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
@@ -19,17 +21,18 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 foreach(SUBDIR ${SUBDIRS})
     message(SUBDIR: ${SUBDIR})
     if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR})
+
         # 设置可执行文件名称
         set(EXECUTABLE_NAME ${SUBDIR})
 
         # 添加子目录中的源文件
         file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR}/*.cpp)
-
-        # 创建可执行文件
-        add_executable(${EXECUTABLE_NAME} ${SOURCES})
-
-        # 链接所需库(如有需要)
-        # target_link_libraries(${EXECUTABLE_NAME} someLib)
+        if (SOURCES)
+            # 创建可执行文件
+            add_executable(${EXECUTABLE_NAME} ${SOURCES})
+            # 链接所需库(如有需要)
+            # target_link_libraries(${EXECUTABLE_NAME} someLib)
+        endif()
     endif()
 endforeach()
 

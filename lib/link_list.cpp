@@ -1,17 +1,6 @@
 
 #include "common.hpp"
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) { }
-    ListNode(int x) : val(x), next(nullptr) { }
-    ListNode(int x, ListNode* next) : val(x), next(next) { }
-    friend std::ostream& operator<<(std::ostream& os, const ListNode& node)
-    {
-        os << node.val;
-        return os;
-    }
-};
+
 
 // ! use inline to avoid multiple definition error
 void printLinkedList(ListNode* head)

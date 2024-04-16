@@ -60,6 +60,12 @@ template <typename F, typename... Args> void measureTime(F&& func, Args&&... arg
     cout << "Function execution time: " << duration << " milliseconds" << endl;
 }
 
-struct ListNode;
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) { }
+    ListNode(int x) : val(x), next(nullptr) { }
+    ListNode(int x, ListNode* next) : val(x), next(next) { }
+};
 void printLinkedList(ListNode* head);
 ListNode* createLinkedList(vector<int> nums);

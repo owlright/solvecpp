@@ -9,6 +9,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
+#include <deque>
 using namespace std;
 using namespace std::chrono;
 template <typename T> std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec)

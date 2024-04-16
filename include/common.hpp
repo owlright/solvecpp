@@ -3,12 +3,12 @@
 #include <functional>
 #include <iomanip>
 #include <iostream>
-#include <ostream>
-#include <vector>
-#include <unordered_set>
-#include <unordered_map>
-#include <set>
 #include <map>
+#include <ostream>
+#include <set>
+#include <unordered_map>
+#include <unordered_set>
+#include <vector>
 using namespace std;
 using namespace std::chrono;
 template <typename T> std::ostream& operator<<(std::ostream& os, const std::vector<T>& vec)
@@ -60,19 +60,6 @@ template <typename F, typename... Args> void measureTime(F&& func, Args&&... arg
     cout << "Function execution time: " << duration << " milliseconds" << endl;
 }
 
-struct ListNode {
-    int val;
-    ListNode* next;
-    ListNode() : val(0), next(nullptr) { }
-    ListNode(int x) : val(x), next(nullptr) { }
-    ListNode(int x, ListNode* next) : val(x), next(next) { }
-};
-// ! use inline to avoid multiple definition error
-inline void printList(ListNode* head)
-{
-    while (head != nullptr) {
-        cout << head->val << " ";
-        head = head->next;
-    }
-    cout << endl;
-}
+struct ListNode;
+void printLinkedList(ListNode* head);
+ListNode* createLinkedList(vector<int> nums);

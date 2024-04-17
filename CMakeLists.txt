@@ -27,9 +27,8 @@ add_library(${LIBRARY_NAME} ${LIBSOURCES})
 
 # 循环添加每个子目录的可执行文件
 foreach(SUBDIR ${SUBDIRS})
-    message(SUBDIR: ${SUBDIR})
     if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR})
-
+        message(SUBDIR: ${SUBDIR})
         # 设置可执行文件名称
         set(EXECUTABLE_NAME ${SUBDIR})
 

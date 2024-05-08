@@ -65,3 +65,5 @@ foreach(SOURCE ${SOURCES})
         target_link_libraries(${EXECUTABLE_NAME} ${LIBRARY_NAME})
     endif()
 endforeach()
+
+add_executable(employee_management employee_management.c)

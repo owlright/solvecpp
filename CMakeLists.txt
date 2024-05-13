@@ -66,4 +66,5 @@ foreach(SOURCE ${SOURCES})
     endif()
 endforeach()
 
+add_executable(employee_management employee_management.c)
 add_subdirectory(cpp20)

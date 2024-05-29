@@ -47,27 +47,7 @@ foreach(SUBDIR ${SUBDIRS})
 endforeach()
 
 # Find all .cpp files in the current directory
-file(GLOB SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.cpp")
-
-# Iterate over each .cpp file
-foreach(SOURCE ${SOURCES})
-    # 读取文件内容
-    file(READ ${SOURCE} FILE_CONTENT)
-    # 获取文件内容的长度
-    string(LENGTH "${FILE_CONTENT}" FILE_LENGTH)
-    if  (FILE_LENGTH EQUAL 0)
-        message(WARNING "File ${SOURCE} is empty")
-    else()
-        # Get the filename without the extension
-        get_filename_component(EXECUTABLE_NAME ${SOURCE} NAME_WE)
-
-        # Create an executable for this .cpp file
-        add_executable(${EXECUTABLE_NAME} ${SOURCE})
-
-        # Link required libraries (if any)
-        target_link_libraries(${EXECUTABLE_NAME} ${LIBRARY_NAME})
-    endif()
-endforeach()
-
+add_executable(topoSort topoSort.cpp)
+add_executable(findMaxN findMaxN.cpp)
 add_executable(employee_management employee_management.c)
 add_subdirectory(cpp20)

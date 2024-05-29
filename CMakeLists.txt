@@ -4,7 +4,10 @@ project(solveCpp)
 # 设置 C++ 标准
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+if(MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+    add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
+endif()
 # 发现所有子目录
 file(GLOB SUBDIRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*")
 list(REMOVE_ITEM SUBDIRS "include")

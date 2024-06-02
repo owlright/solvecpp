@@ -23,6 +23,8 @@ DAG
 
 using namespace std;
 using Graph = unordered_map<int, vector<int>>;
+using NodeWeight = unordered_map<int, int>;
+
 void dfs(int node, Graph& graph, vector<bool>& visited, stack<int>& sorted_nodes)
 {
     visited[node] = true;
@@ -57,7 +59,7 @@ vector<int> topologicalSort(int n, Graph& graph)
 int main()
 {
 
-    std::vector<pair<int, int>> node_weights;
+    NodeWeight node_weights;
     Graph graph;
     // int n, e;
     // cin >> n >> e;
@@ -74,10 +76,10 @@ int main()
     // }
     int n = 4;
     int e = 4;
-    node_weights.push_back({ 1, 2 });
-    node_weights.push_back({ 2, 3 });
-    node_weights.push_back({ 3, 5 });
-    node_weights.push_back({ 4, 4 });
+    node_weights[1] = 2;
+    node_weights[2] = 3;
+    node_weights[3] = 5;
+    node_weights[4] = 4;
     graph[1].push_back(2);
     graph[1].push_back(3);
     graph[2].push_back(4);

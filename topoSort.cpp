@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <iostream>
 #include <map>
+#include <queue>
 #include <stack>
 #include <unordered_map>
 #include <vector>
@@ -23,34 +24,49 @@ DAG
 
 using namespace std;
 using Graph = unordered_map<int, vector<int>>;
-using NodeWeight = unordered_map<int, int>;
-
-void dfs(int node, Graph& graph, vector<bool>& visited, stack<int>& sorted_nodes)
-{
-    visited[node] = true;
-    for (int neighbor : graph[node]) {
-        if (!visited[neighbor]) {
-            dfs(neighbor, graph, visited, sorted_nodes);
-        }
+// using NodeWeight = unordered_map<int, int>;
+using NodeWeight = vector<int>;
+using NodeWeightPair = pair<int, int>;
+struct NodeWeightCompare {
+    bool operator()(const NodeWeightPair& a, const NodeWeightPair& b) const
+    {
+        return a.second < b.second;
     }
-    sorted_nodes.push(node);
-}
+};
+using NodeWeightQueue = priority_queue<NodeWeightPair, vector<NodeWeightPair>, NodeWeightCompare>;
 
-vector<int> topologicalSort(int n, Graph& graph)
+vector<int> topologicalSort(int n, Graph& graph, NodeWeight& node_weights)
 {
+    // Initialize visited and indegree array
+    vector<int> indegree(n + 1);
     vector<bool> visited(n + 1, false);
-    stack<int> sorted_nodes;
-
-    for (int node = 1; node <= n; ++node) {
-        if (!visited[node]) {
-            dfs(node, graph, visited, sorted_nodes);
+    for (const auto& [node, neighbors] : graph) {
+        for (int neighbor : neighbors) {
+            ++indegree[neighbor];
         }
     }
 
-    vector<int> result;
-    while (!sorted_nodes.empty()) {
-        result.push_back(sorted_nodes.top());
-        sorted_nodes.pop();
+    NodeWeightQueue q;
+    for (int i = 1; i <= n; ++i) {
+        if (indegree[i] == 0) {
+            q.push({ i, node_weights[i] });
+        }
+    }
+
+    std::vector<int> result;
+    while (!q.empty()) {
+        auto [n, w] = q.top();
+        q.pop();
+        if (!visited[n]) {
+            result.push_back(n);
+            visited[n] = true;
+            for (int neighbor : graph[n]) {
+                --indegree[neighbor];
+                if (indegree[neighbor] == 0) {
+                    q.push({ neighbor, node_weights[neighbor] });
+                }
+            }
+        }
     }
 
     return result;
@@ -76,6 +92,7 @@ int main()
     // }
     int n = 4;
     int e = 4;
+    node_weights.resize(n + 1);
     node_weights[1] = 2;
     node_weights[2] = 3;
     node_weights[3] = 5;
@@ -86,11 +103,11 @@ int main()
     graph[3].push_back(4);
 
     // 根据节点权重进行排序
-    sort(node_weights.begin(), node_weights.end(),
-        [](const pair<int, int>& a, const pair<int, int>& b) { return a.second > b.second; });
+    // sort(node_weights.begin(), node_weights.end(),
+    //     [](const pair<int, int>& a, const pair<int, int>& b) { return a.second > b.second; });
 
     // 执行拓扑排序
-    vector<int> sorted_nodes = topologicalSort(n, graph);
+    vector<int> sorted_nodes = topologicalSort(n, graph, node_weights);
 
     // 输出排序结果
     for (int node : sorted_nodes) {

@@ -28,6 +28,7 @@ file(GLOB LIBSOURCES ${CMAKE_CURRENT_SOURCE_DIR}/lib/*.cpp)
 # Create the library
 add_library(${LIBRARY_NAME} ${LIBSOURCES})
 
+add_subdirectory(lib/graph)
 # 循环添加每个子目录的可执行文件
 foreach(SUBDIR ${SUBDIRS})
     if(IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${SUBDIR})

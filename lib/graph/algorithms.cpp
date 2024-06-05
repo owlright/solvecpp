@@ -78,12 +78,11 @@ double dijistra(const Graph& g, int src, int dest, vector<int>* path)
     while (!pq.empty()) {
         auto u = pq.top().second;
         pq.pop();
-
+        visited.insert(u);
         for (auto& [v, weight] : g.out_neighbors(u)) {
             // If there is shorted path to v through u.
             if (visited.find(v) == visited.end() && dist[v] > dist[u] + weight) {
                 // Updating distance of v
-                visited.insert(v);
                 dist[v] = dist[u] + weight;
                 prev[v] = u;
                 pq.push(make_pair(dist[v], v));

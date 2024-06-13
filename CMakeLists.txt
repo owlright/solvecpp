@@ -54,5 +54,6 @@ add_executable(employee_management employee_management.c)
 add_subdirectory(cpp20)
 
 add_executable(testgraph test-graph.cpp)
+add_executable(cppmemo cppmemo.cpp)
 # target_include_directories(testgraph PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/lib/graph)
 # target_link_libraries(testgraph ${LIBRARY_NAME})

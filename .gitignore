@@ -2,3 +2,6 @@ cmake-build/
 .vs/
 .vscode/
 build/
+*.i
+*.o
+*.s

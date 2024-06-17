@@ -8,3 +8,4 @@ void mergeSort(vector<int>& nums, int left, int right);
 void quickSort(vector<int>& nums, int left, int right);
 void quickSort2(vector<int>& nums, int left, int right);
 void quickSort3(vector<int>& nums, int left, int right);
+void bucketSort(vector<float> &nums);

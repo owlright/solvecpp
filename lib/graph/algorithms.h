@@ -1,6 +1,6 @@
 #pragma once
 #include "graph.h"
-
+#include <cmath>
 namespace simnet::algorithms {
 using Path = vector<int>;
 void floyd_warshall(Mat<double>& distance, int N);

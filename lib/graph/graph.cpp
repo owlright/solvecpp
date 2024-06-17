@@ -2,6 +2,7 @@
 #include "graph.h"
 #include "algorithms.h"
 #include <stdexcept>
+#include <string.h>
 using simnet::algorithms::floyd_warshall;
 namespace simnet {
 bool is_in_vector(const int& x, const vector<int> vec)

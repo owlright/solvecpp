@@ -1,7 +1,9 @@
 cmake-build/
+cmake-build-*/
 .vs/
 .vscode/
 build/
 *.i
 *.o
 *.s
+.idea/

@@ -37,3 +37,10 @@ void mergeSort(vector<int>& nums, int left, int right)
     merge(nums, left, mid, right);
     cout << nums << endl;
 }
+
+void test_mergeSort() {
+    Timer _;
+    vector<int> nums { 3, 2, 1, 5, 6, 4 };
+    mergeSort(nums, 0, nums.size() - 1);
+    cout << nums << endl;
+}

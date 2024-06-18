@@ -1,4 +1,5 @@
 #include "sort_algos.hpp"
+#include <algorithm>
 /* 桶排序 */
 void bucketSort(vector<float> &nums) {
     // 初始化 k = n/2 个桶，预期向每个桶分配 2 个元素
@@ -14,7 +15,7 @@ void bucketSort(vector<float> &nums) {
     // 2. 对各个桶执行排序
     for (vector<float> &bucket : buckets) {
         // 使用内置排序函数，也可以替换成其他排序算法
-        sort(bucket.begin(), bucket.end());
+        std::sort(bucket.begin(), bucket.end());
     }
     // 3. 遍历桶合并结果
     int i = 0;
@@ -23,4 +24,11 @@ void bucketSort(vector<float> &nums) {
             nums[i++] = num;
         }
     }
+}
+
+void test_bucketSort() {
+    Timer _;
+    vector<float> nums { 0.3f, 0.2f, 0.1f, 0.5f, 0.6f, 0.4f };
+    bucketSort(nums);
+    cout << nums << endl;
 }
